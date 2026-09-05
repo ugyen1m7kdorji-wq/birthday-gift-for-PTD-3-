@@ -1,0 +1,94 @@
+:root {
+  --paper: #FAF3E7;
+  --paper-dim: #F0E6D2;
+  --paper-soft: #E4D6B8;
+  --paper-softer: #D9C7A3;
+  --ink: #241C15;
+  --ink-soft: #6B5D4F;
+  --ink-faint: #8A7A68;
+  --red: #D62839;
+  --red-dark: #B0182B;
+  --yellow: #F5B942;
+  --yellow-dark: #D99A22;
+  --blue: #6FB8D2;
+  --blue-dark: #4A93AC;
+  --green: #4C9A6A;
+  --green-dark: #3A7C53;
+  --orange: #C2673A;
+  --orange-dark: #A34F27;
+
+  --font-display: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-body: 'Segoe UI', 'Trebuchet MS', sans-serif;
+
+  --radius-card: 16px;
+  --radius-sm: 8px;
+  --ink-border: 2px solid var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--paper-softer); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+
+.card {
+  background: var(--paper-dim);
+  border: var(--ink-border);
+  border-radius: var(--radius-card);
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 700;
+  transition: transform 0.08s ease, background-color 0.15s ease;
+}
+button:active { transform: scale(0.96); }
+
+.btn-primary { background: var(--red); color: var(--paper); }
+.btn-primary:hover { background: var(--red-dark); }
+.btn-primary:disabled { background: var(--paper-soft); color: var(--ink-faint); cursor: not-allowed; }
+
+.btn-soft { background: var(--paper-soft); color: var(--ink); }
+.btn-soft:hover { background: var(--paper-softer); }
+.btn-soft:disabled { background: var(--paper-dim); color: var(--ink-faint); cursor: not-allowed; }
+
+.btn-danger { background: #F0DCC8; color: var(--orange-dark); }
+.btn-danger:hover { background: #E8C9A8; }
+
+input[type="text"], input[type="number"], input[type="search"], select {
+  font-family: var(--font-body);
+  background: var(--paper);
+  border: var(--ink-border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: var(--ink);
+  outline: none;
+}
+input[type="text"]:focus, input[type="number"]:focus, input[type="search"]:focus {
+  border-color: var(--red);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--red);
+  width: 16px;
+  height: 16px;
+}
+
+::placeholder { color: var(--ink-faint); }

@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Snoopy - Dashboard</title>
+  <link rel="stylesheet" href="shared/theme.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="brand">
+        <img src="assets/gifs/normal.gif" class="brand-avatar" alt="" />
+        <div>
+          <h1>Snoopy</h1>
+          <p class="tagline">Your study den companion</p>
+        </div>
+      </div>
+      <nav id="tabs">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="room">Study Room</button>
+        <button class="tab-btn" data-tab="progress">Progress</button>
+        <button class="tab-btn" data-tab="todo">To-Do</button>
+        <button class="tab-btn" data-tab="settings">Settings</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Overview -->
+      <section class="tab-panel active" id="panel-overview">
+        <div class="grid-2">
+          <div class="card timer-card">
+            <p class="muted">Current session</p>
+            <div id="ov-timer" class="big-timer">25:00</div>
+            <p id="ov-mode-label" class="muted">Not started</p>
+            <div class="btn-row">
+              <button id="ov-start" class="btn-primary">Start Focus</button>
+              <button id="ov-pause" class="btn-soft" disabled>Pause</button>
+              <button id="ov-stop" class="btn-danger" disabled>Stop</button>
+            </div>
+          </div>
+          <div class="stat-col">
+            <div class="card stat-card">
+              <div class="stat-value" id="stat-level">Lv. 1</div>
+              <div class="stat-label">Level</div>
+              <div class="xp-bar"><div id="xp-fill" class="xp-fill"></div></div>
+            </div>
+            <div class="two-up">
+              <div class="card stat-card">
+                <div class="stat-value" id="stat-streak">0</div>
+                <div class="stat-label">Day streak 🔥</div>
+              </div>
+              <div class="card stat-card">
+                <div class="stat-value" id="stat-today">0m</div>
+                <div class="stat-label">Focused today</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Study Room -->
+      <section class="tab-panel" id="panel-room">
+        <div class="card room-card">
+          <svg id="room-scene" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </section>
+
+      <!-- Progress -->
+      <section class="tab-panel" id="panel-progress">
+        <div class="grid-3">
+          <div class="card stat-card">
+            <div class="stat-value" id="pr-total">0h 0m</div>
+            <div class="stat-label">Total focus time</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" id="pr-sessions">0</div>
+            <div class="stat-label">Sessions completed</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" id="pr-streak">0</div>
+            <div class="stat-label">Current streak</div>
+          </div>
+        </div>
+        <div class="card chart-card">
+          <p class="muted" style="margin-top:0">Last 7 days</p>
+          <div id="chart" class="chart"></div>
+        </div>
+      </section>
+
+      <!-- To-Do -->
+      <section class="tab-panel" id="panel-todo">
+        <div class="card todo-card">
+          <div class="todo-input-row">
+            <input type="text" id="todo-input" placeholder="Add a task..." maxlength="120" />
+            <button id="todo-add" class="btn-primary">Add</button>
+          </div>
+          <ul id="todo-list"></ul>
+          <div class="btn-row">
+            <button id="todo-clear" class="btn-soft">Clear completed</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="tab-panel" id="panel-settings">
+        <div class="card settings-card">
+          <label class="setting-row">
+            <span>Focus session length (minutes)</span>
+            <input type="number" id="set-focus" min="5" max="120" step="5" />
+          </label>
+          <label class="setting-row">
+            <span>Break length (minutes)</span>
+            <input type="number" id="set-break" min="1" max="60" step="1" />
+          </label>
+          <label class="setting-row checkbox-row">
+            <span>Auto-start break after focus session</span>
+            <input type="checkbox" id="set-autobreak" />
+          </label>
+          <label class="setting-row checkbox-row">
+            <span>Sound effects</span>
+            <input type="checkbox" id="set-sound" />
+          </label>
+          <label class="setting-row checkbox-row">
+            <span>Launch Snoopy when Windows starts</span>
+            <input type="checkbox" id="set-autostart" />
+          </label>
+          <div class="btn-row" style="margin-top: 18px;">
+            <button id="set-reset" class="btn-danger">Reset all progress</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

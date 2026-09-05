@@ -1,0 +1,20 @@
+{
+  "name": "snoopy-companion",
+  "version": "1.0.0",
+  "description": "A cute desktop companion Snoopy - focus timer, to-do list, and study buddy.",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.1.1",
+    "@tauri-apps/plugin-store": "^2.1.0",
+    "@tauri-apps/plugin-autostart": "^2.0.1",
+    "@tauri-apps/plugin-notification": "^2.0.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.1.0"
+  }
+}

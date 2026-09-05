@@ -1,0 +1,194 @@
+html, body {
+  background: transparent;
+  width: 220px;
+  height: 340px;
+  overflow: hidden;
+  user-select: none;
+}
+
+#stage {
+  position: relative;
+  width: 220px;
+  height: 340px;
+}
+
+#sprite {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  width: 220px;
+  height: 260px;
+  -webkit-user-drag: none;
+  cursor: grab;
+  filter: drop-shadow(0 6px 10px rgba(36, 28, 21, 0.28));
+  transition: transform 0.12s ease;
+}
+#sprite:active { cursor: grabbing; transform: scale(0.97); }
+
+/* ---------- overlay layer (e.g. Zzz, sparkles) ----------
+   Sits on top of #sprite at the same position. pointer-events: none is
+   critical - without it, this element would intercept the mousedown/click
+   that #sprite needs for dragging and petting. */
+#sprite-overlay {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  width: 220px;
+  height: 260px;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+#sprite-overlay.visible { opacity: 1; }
+#sprite-overlay.hidden { display: none; }
+
+/* ---------- speech bubble ---------- */
+#bubble {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  transform: translateX(-50%);
+  max-width: 172px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink);
+  box-shadow: 0 3px 8px rgba(36, 28, 21, 0.18);
+  opacity: 1;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+#bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  transform: translateX(-50%);
+  border-width: 9px 7px 0 7px;
+  border-style: solid;
+  border-color: var(--ink) transparent transparent transparent;
+}
+#bubble::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  border-width: 7px 6px 0 6px;
+  border-style: solid;
+  border-color: var(--paper) transparent transparent transparent;
+  z-index: 1;
+}
+#bubble.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(4px); }
+
+/* ---------- pill (focus/break indicator) ---------- */
+#pill {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(36, 28, 21, 0.2);
+}
+#pill.focus { background: var(--red); color: var(--paper); }
+#pill.break { background: var(--yellow); color: var(--ink); }
+#pill.hidden { display: none; }
+
+/* ---------- hover toolbar (corner stack, out of the bubble's way) ---------- */
+#toolbar {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  transform: translateX(4px);
+  z-index: 5;
+}
+#stage:hover #toolbar {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+.tool-btn {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.tool-btn:hover { background: var(--paper-soft); }
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--red);
+  color: var(--paper);
+  border-radius: 8px;
+  font-size: 9px;
+  min-width: 14px;
+  height: 14px;
+  line-height: 14px;
+  text-align: center;
+  padding: 0 2px;
+}
+.badge.hidden { display: none; }
+
+/* ---------- context menu ---------- */
+#ctx-menu {
+  position: fixed;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 6px 16px rgba(36, 28, 21, 0.3);
+  z-index: 100;
+  min-width: 170px;
+}
+#ctx-menu.hidden { display: none; }
+#ctx-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 7px 10px;
+  border-radius: 6px;
+}
+#ctx-menu button:hover { background: var(--paper-dim); }
+#ctx-menu hr {
+  border: none;
+  border-top: 1px solid var(--paper-soft);
+  margin: 4px 2px;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pop { animation: pop-in 0.2s ease; }

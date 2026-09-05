@@ -1,0 +1,51 @@
+html, body {
+  background: transparent;
+  height: 100%;
+  margin: 0;
+}
+
+#scrim {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(36, 28, 21, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  text-align: center;
+}
+
+#break-sprite {
+  width: 180px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+#scrim h1 {
+  font-size: 42px;
+  margin: 6px 0 4px;
+  color: var(--paper);
+}
+
+#break-msg {
+  color: var(--paper-soft);
+  font-size: 16px;
+  max-width: 420px;
+  margin: 0 0 20px;
+}
+
+#countdown {
+  font-family: var(--font-display);
+  font-size: 68px;
+  font-weight: 900;
+  color: var(--yellow);
+  margin-bottom: 26px;
+  letter-spacing: 2px;
+}
+
+#end-break {
+  padding: 14px 28px;
+  font-size: 15px;
+  border-radius: 12px;
+}
