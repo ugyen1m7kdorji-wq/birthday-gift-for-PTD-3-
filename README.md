@@ -34,7 +34,7 @@ that - pick whichever is easier for you:
 
 ### Option A: Build in the cloud (no installs on your PC)
 
- 1. Create a new **public or private GitHub repo** and push this folder to it.
+1. Create a new **public or private GitHub repo** and push this folder to it.
 2. On GitHub, go to the **Actions** tab → select **"Build Snoopy Companion
    (Windows)"** → click **"Run workflow"**.
 3. Wait for it to finish (5-10 minutes), then open the run and download the
@@ -93,6 +93,6 @@ from source with hot-reload, no installer needed - good for tweaking things.
   CSS/JS in a real browser with the Tauri APIs mocked out - but the Rust
   side (`main.rs`, window/tray/timer wiring) has only been carefully
   reviewed by hand against the Tauri v2 API, not compiled. If `npm run
-  build` (or the GitHub Action) throws a Rust compile error, paste it back
+build` (or the GitHub Action) throws a Rust compile error, paste it back
   to me and I'll fix it - that's a normal part of shipping Rust code I
   couldn't execute myself.
